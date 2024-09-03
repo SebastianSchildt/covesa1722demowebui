@@ -1,0 +1,151 @@
+<html>
+<meta charset="UTF-8">
+
+
+<script src="gauge.min.js"></script>
+<script src="jquery-3.7.1.min.js"></script>
+
+<script src="com.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="icon" href="./kuksalogo.png" type="image/png">
+
+<head>
+    <title> Open1722 + VSS </title>
+</head>
+
+<script>
+    $(document).ready(function () {
+        initAll();
+        $("#RNDSPEED").click(function () {
+            testRandomSpeed();
+        });
+        $("#RNDPOW").click(function () {
+            testRandomPow();
+        });
+    });
+</script>
+
+
+<body>
+
+    <div style="display: table;width:100%;">
+        <!-- <div style="display: table-cell; vertical-align: middle;"><img src="./kuksalogo.png" height="60px" /></div> -->
+        <div style="display: table-cell; vertical-align: middle;">
+            <h1> &nbsp;&nbsp;Open1722 + VSS</h1>
+        </div>
+        <div style="display: table-cell; vertical-align: middle;text-align: right;"><img src="./COVESA logo tag.jpg"
+                height="60px" /></div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="left-column">
+            <h2>ACF_CAN</h2>
+            <p>
+                This data is received as a CAN stream packaged into IEEE1722 compliant Ethernet frames. It is then
+                converted into VSS using a KUKSA data provider and displayed using KUKSA's VISS implementation.
+            </p>
+            <div style="text-align: center;">
+                <img src="./acf_can_block.drawio.svg" height="80px" />
+            </div>
+
+            <div id=speedHolder>
+                <canvas id="acfcanG" data-type="radial-gauge" data-width="300" data-height="300" data-units="Km/h"
+                    data-min-value="0" data-max-value="220"></canvas>
+            </div>
+
+        </div>
+        <div class="right-column">
+            <h2>ACF_VSS</h2>
+            <p>The µC based zone ECU can provides data in VSS semnatic directly over IEEE1722 using ACF_CAN. It is feed without any further mapping/conversion into KUKSA and displayed using KUKSA's VISS implementation </p>
+            <div style="text-align: center;">
+            <img src="./acf_vss_block.drawio.svg" height="80px" />
+            </div>
+
+            <div id=powerHolder>
+                <canvas id="acfVSSG"
+                data-type="linear-gauge"
+        data-width="600"
+        data-height="260"
+        data-border-radius="10"
+        data-borders="0"
+        data-bar-begin-circle="false"
+        data-title="Inverter Power"
+        data-units="kW"
+        data-value="25.5"
+        data-bar-stroke-width="2"
+        data-min-value="-20"
+        data-max-value="200"
+        data-major-ticks="-20, 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200"
+        data-minor-ticks="2"
+        data-highlights='[
+            {"from":-20, "to":0, "color": "green"},
+            {"from": 150, "to": 200, "color": "red"}
+        ]'
+        ></canvas>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div style="border-top: 1pt solid black; margin: 10px; width: 100%; padding-top: 3px;">
+        Uses COVESA Open1722 and Eclipse KUKSA projects. Demo &copy; 2024 Robert Bosch GmbH & ETAS GmbH
+    </div>
+
+    <div class="banner-container">
+        <div class="banner-content">
+            <img src="./logos/COVESA-logo.png" alt="COVESA logo">
+            <span>1722 demonstrator</span>
+
+            <div class="spacer">◆</div>
+
+            <span>Using</span>
+            <img src="./logos/open1722logo.png" alt="Open1722 logo">
+            <span>IEEE1722 implementation</span>
+
+            <div class="spacer">◆</div>
+
+            <span>Leveraging</span>
+            <img src="./logos/colored-with-black-text.svg" alt="VSS logo">
+            <span>Vehicle Signal Specification</span>
+
+            <div class="spacer">◆</div>
+
+
+            <span>Created by</span>
+            <img src="./logos/Bosch-logotype.svg" alt="Bosch logo">
+            <span>and</span>
+            <img src="./logos/etas-logo-blue-new.svg" style="height:30px;" alt="ETAS logo">
+
+            <div class="spacer">◆</div>
+
+
+            <span>Enabled by Eclipse</span>
+            <img src="./logos/kuksa-logo-h.png" alt="KUKSA logo">
+            <span>, a project from </span>
+            <img src="./logos/SDV-Main-Colour-RGB copy.png" alt="Eclipse SDV logo">
+            <span>Eclipse SDV working group</span>
+
+            <div class="spacer">◆</div>
+
+            <img src="./logos/EN Co-funded by the EU_POS.jpg" alt="EU funding logo">
+            <span>as part of Federate project</span>
+            <img src="./logos/hal4sdvlogo.jpg" alt="Hal4SDV logo">
+
+
+
+
+<!-- Repeat as needed -->
+        </div>
+    </div>
+
+    <div id="RNDSPEED">RANDOM SPEED </div>
+    <div id="RNDPOW">RANDOM POW </div>
+
+
+</body>
+
+</html>
