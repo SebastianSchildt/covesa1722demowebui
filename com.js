@@ -24,8 +24,8 @@ function setPow(pow)  {
 
 
 function setSpeed(speed) {
-//    console.log("New Speed is "+speed);
-    speedGauge.value=Math.abs(speed);
+    $('#acfcanG').attr('data-value', speed);
+    console.log("New Pow is "+speed);
 }
 
 
@@ -153,7 +153,7 @@ function parseData(js) {
 function initGauges() {
 
     
-    
+    /*
     speedGauge = new RadialGauge({
         renderTo: 'acfcanG',
         width: 300,
@@ -198,15 +198,8 @@ function initGauges() {
         animationRule: "linear"
     }).draw();
 
-    
-/*
-    powerGauge = new LinearGauge({
-        renderTo: 'acfVSSG',
-        units: "kW",
-        title: "Inverter Power",
+    */
 
-    }).draw();
-  */  
     
 
 }

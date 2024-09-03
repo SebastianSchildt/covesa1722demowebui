@@ -127,3 +127,11 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     */
 }
+
+#DebugContainer {
+    position: fixed;
+    bottom: 0px;
+    background-color: magenta;
+    color: white;
+    font-weight: bold;
+}

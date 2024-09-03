@@ -52,14 +52,38 @@
             </div>
 
             <div id=speedHolder>
-                <canvas id="acfcanG" data-type="radial-gauge" data-width="300" data-height="300" data-units="Km/h"
-                    data-min-value="0" data-max-value="220"></canvas>
+                <canvas id="acfcanG" data-type="radial-gauge" 
+                data-width="300" 
+                data-height="300" 
+                data-units="km/h"
+                data-min-value="0"
+                data-max-value="220"
+                data-value-dec="1"
+                data-major-ticks="0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220"
+                data-minor-ticks="2"
+                data-stroke-ticks="true"
+                data-highlights='[
+                {"from":160, "to":220, "color": "red"},
+                {"from": 150, "to": 200, "color": "red"}
+                ]'
+                data-color-plate="#fff"
+                data-border-shadow-width="0"
+                data-borders="false"
+                data-needle-type="arrow"
+                data-needle-width="2"
+                data-needle-circle-size="7"
+                data-needle-circle-outer="true"
+                data-needle-circle-inner="false"
+                data-animation="false"
+                data-animation-duration="500"
+                data-animation-rule="linear">
+                </canvas>
             </div>
 
         </div>
         <div class="right-column">
             <h2>ACF_VSS</h2>
-            <p>The µC based zone ECU can provides data in VSS semnatic directly over IEEE1722 using ACF_CAN. It is feed without any further mapping/conversion into KUKSA and displayed using KUKSA's VISS implementation </p>
+            <p>The µC based zone ECU can provides data in VSS semnatic directly over IEEE1722 using ACF_VSS. It is feed without any further mapping/conversion into KUKSA and displayed using KUKSA's VISS implementation </p>
             <div style="text-align: center;">
             <img src="./acf_vss_block.drawio.svg" height="80px" />
             </div>
@@ -70,6 +94,7 @@
         data-width="600"
         data-height="260"
         data-border-radius="10"
+        data-animation="false"
         data-borders="0"
         data-bar-begin-circle="false"
         data-title="Inverter Power"
@@ -155,9 +180,11 @@
         <div> <img src="./logos/EN Co-funded by the EU_POS.jpg" alt="EU funding logo"></div>
         <div>            <img src="./logos/hal4sdvlogo.jpg" alt="Hal4SDV logo">        </div>
     </div>
-    <div id="RNDSPEED">RANDOM SPEED </div>
-    <div id="RNDPOW">RANDOM POW </div>
 
+    <div id="DebugContainer">
+        <div id="RNDSPEED">RANDOM SPEED </div>
+        <div id="RNDPOW">RANDOM POW </div>
+    </div>
 
 </body>
 
