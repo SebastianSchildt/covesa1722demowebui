@@ -130,6 +130,7 @@ body {
 
 #DebugContainer {
     position: fixed;
+    display: none;
     bottom: 0px;
     background-color: magenta;
     color: white;
