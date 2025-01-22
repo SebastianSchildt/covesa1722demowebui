@@ -6,6 +6,8 @@
 <script src="jquery-3.7.1.min.js"></script>
 
 <script src="com.js"></script>
+<script src="./knob/pureknob.js" type="text/javascript"></script>
+
 
 <link rel="stylesheet" type="text/css" href="./style.css">
 <link rel="icon" href="./kuksalogo.png" type="image/png">
@@ -23,7 +25,87 @@
         $("#RNDPOW").click(function () {
             testRandomPow();
         });
+        addleftKnob();
+        addrightKnob();
     });
+
+    function addleftKnob() {
+        // Create knob element, 300 x 300 px in size.
+        const lknob = pureknob.createKnob(150, 150);
+
+        // Set properties.
+        lknob.setProperty('angleStart', -0.75 * Math.PI);
+        lknob.setProperty('angleEnd', 0.75 * Math.PI);
+        lknob.setProperty('colorFG', '#88ff88');
+        lknob.setProperty('trackWidth', 0.4);
+        lknob.setProperty('valMin', 0);
+        lknob.setProperty('valMax', 100);
+
+        // Set initial value.
+        lknob.setValue(50);
+
+        /*
+         * Event listener.
+         *
+         * Parameter 'knob' is the knob object which was
+         * actuated. Allows you to associate data with
+         * it to discern which of your knobs was actuated.
+         *
+         * Parameter 'value' is the value which was set
+         * by the user.
+         */
+        const listener = function (lknob, value) {
+            console.log(value);
+        };
+
+        lknob.addListener(listener);
+
+        // Create element node.
+        const node = lknob.node();
+
+        // Add it to the DOM.
+        const elem = document.getElementById('leftknob');
+        elem.appendChild(node);
+    }
+
+    function addrightKnob() {
+        // Create knob element, 300 x 300 px in size.
+        const rknob = pureknob.createKnob(150, 150);
+
+        // Set properties.
+        rknob.setProperty('angleStart', -0.75 * Math.PI);
+        rknob.setProperty('angleEnd', 0.75 * Math.PI);
+        rknob.setProperty('colorFG', '#88ff88');
+        rknob.setProperty('trackWidth', 0.4);
+        rknob.setProperty('valMin', 0);
+        rknob.setProperty('valMax', 100);
+
+        // Set initial value.
+        rknob.setValue(50);
+
+        /*
+         * Event listener.
+         *
+         * Parameter 'knob' is the knob object which was
+         * actuated. Allows you to associate data with
+         * it to discern which of your knobs was actuated.
+         *
+         * Parameter 'value' is the value which was set
+         * by the user.
+         */
+        const listener = function (rknob, value) {
+            console.log(value);
+        };
+
+        rknob.addListener(listener);
+
+        // Create element node.
+        const node = rknob.node();
+
+        // Add it to the DOM.
+        const elem = document.getElementById('rightknob');
+        elem.appendChild(node);
+    }
 </script>
 
 
@@ -32,96 +114,54 @@
     <div style="display: table;width:100%;">
         <!-- <div style="display: table-cell; vertical-align: middle;"><img src="./kuksalogo.png" height="60px" /></div> -->
         <div style="display: table-cell; vertical-align: middle;">
-            <h1> &nbsp;&nbsp;Open1722 + VSS</h1>
+            <h1> &nbsp;&nbsp;IEEE-1722 ACF-CAN</h1>
         </div>
+        <!-- <div style="display: table-cell; vertical-align: middle;text-align: right;"><img src="./logos/COVESA-logo.png"
+                style="padding-right: 25px;" height="60px" /></div> -->
         <div style="display: table-cell; vertical-align: middle;text-align: right;"><img src="./logos/COVESA-logo.png"
-               style="padding-right: 25px;" height="60px" /></div>
+                style="padding-right: 25px;" height="60px" /></div>
     </div>
+
 
 
 
     <div class="container">
-        <div class="left-column">
-            <h2>ACF_CAN</h2>
-            <p>
-                This data is received as a CAN stream packaged into IEEE1722 compliant Ethernet frames. It is then
-                converted into VSS using a KUKSA data provider and displayed using KUKSA's VISS implementation.
-            </p>
-            <div style="text-align: center;">
-                <img src="./acf_can_block.drawio.svg" height="80px" />
-            </div>
+        <div id="thegraphic" style="text-align: center;">
+            <img src="./raw_can_knob_block.drawio.svg" />
+        </div>
+        <div id="leftknob" class="knob"></div>
+        <div id="rightknob" class="knob"></div>
 
-            <div id=speedHolder>
-                <canvas id="acfcanG" data-type="radial-gauge" 
-                data-width="300" 
-                data-height="300" 
-                data-units="km/h"
-                data-min-value="0"
-                data-max-value="220"
-                data-value-dec="1"
-                data-major-ticks="0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220"
-                data-minor-ticks="2"
-                data-stroke-ticks="true"
-                data-highlights='[
-                {"from":160, "to":220, "color": "red"},
-                {"from": 150, "to": 200, "color": "red"}
-                ]'
-                data-color-plate="#fff"
-                data-border-shadow-width="0"
-                data-borders="false"
-                data-needle-type="arrow"
-                data-needle-width="2"
-                data-needle-circle-size="7"
-                data-needle-circle-outer="true"
-                data-needle-circle-inner="false"
-                data-animation="false"
-                data-animation-duration="500"
-                data-animation-rule="linear">
-                </canvas>
-            </div>
+        <div class="left-column">
+            <h2>Native CAN</h2>
+            <p style="padding-right:50%">
+                CAN data is received by the Vehicle Computer. It is then converted into COVESA Vehicle Signal
+                Specification (VSS) format by a KUKSA provider, enabling platform-independent SDV applications (such as
+                this web client you are seeing that uses Web technology to display the data received from the
+                electromechanical embedded layer).
+            </p>
 
         </div>
+
+
         <div class="right-column">
-            <h2>ACF_VSS</h2>
-            <p>The µC based zone ECU can provides data in VSS semnatic directly over IEEE1722 using ACF_VSS. It is feed without any further mapping/conversion into KUKSA and displayed using KUKSA's VISS implementation </p>
-            <div style="text-align: center;">
-            <img src="./acf_vss_block.drawio.svg" height="80px" />
-            </div>
 
-            <div id=powerHolder>
-                <canvas id="acfVSSG"
-                data-type="linear-gauge"
-        data-width="600"
-        data-height="260"
-        data-border-radius="10"
-        data-animation="false"
-        data-borders="0"
-        data-bar-begin-circle="false"
-        data-title="Inverter Power"
-        data-units="kW"
-        data-value="25.5"
-        data-bar-stroke-width="2"
-        data-min-value="-20"
-        data-max-value="200"
-        data-major-ticks="-20, 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200"
-        data-minor-ticks="2"
-        data-highlights='[
-            {"from":-20, "to":0, "color": "green"},
-            {"from": 150, "to": 200, "color": "red"}
-        ]'
-        ></canvas>
+            <h2 style="text-align: right;">CAN over IEEE-1722</h2>
+            <p style="padding-left:50%">CAN data is received by the Zone Controller. It is packaged into IEEE-1722
+                ACF-VSS
+                frames and forwarded via Ethernet.
+                A Open1722-based device driver converts the IEEE-1722 stream into a standard Linux CAN device. From the
+                virtual CAN device It is then converted into COVESA Vehicle Signal Specification (VSS) format by a KUKSA
+                provider, enabling platform-independent SDV applications (such as
+                this web client you are seeing that uses Web technology to display the data received from the
+                electromechanical embedded layer).
 
 
-            </div>
         </div>
     </div>
+
 
     <!--
-    <div style="border-top: 1pt solid black; margin: 10px; width: 100%; padding-top: 3px;">
-        Uses COVESA Open1722 and Eclipse KUKSA projects. Demo &copy; 2024 Robert Bosch GmbH & ETAS GmbH
-    </div>
--->
-
     <div class="banner-container">
         <div class="banner-content">
             <img src="./logos/COVESA-logo.png" alt="COVESA logo">
@@ -165,26 +205,71 @@
 
 
 
-<!-- Repeat as needed -->
+            
         </div>
     </div>
-    
+-->
+    <div id="partnerheader">
+        <h2>Partners & Technologies</h2>
+    </div>
+
     <div class="logo-grid">
-        <div><img src="./logos/COVESA-logo.png" alt="COVESA logo">        </div>
-        <div> <img src="./logos/open1722logo.png" alt="Open1722 logo"></div>
-        <div><img src="./logos/colored-with-black-text.svg" alt="VSS logo"></div>
-        <div><img src="./logos/Bosch-logotype.svg" alt="Bosch logo"></div>
-        <div><img src="./logos/etas-logo-blue-new.svg" alt="ETAS logo"></div>
-        <div> <img src="./logos/kuksa-logo-h.png" alt="KUKSA logo"></div>
-        <div> <img src="./logos/SDV-Main-Colour-RGB copy.png" alt="Eclipse SDV logo"></div>
-        <div> <img src="./logos/EN Co-funded by the EU_POS.jpg" alt="EU funding logo"></div>
-        <div>            <img src="./logos/hal4sdvlogo.jpg" alt="Hal4SDV logo">        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/open1722logo.png" alt="Open1722 logo"></div>
+                <div class="flip-card-back"> <img src="./logos/Open1722QR.png" alt="Open1722 QR"></div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/COVESA-logo.png" alt="COVESA logo"></div>
+                <div class="flip-card-back">Connected Vehicle Systems Alliance <br> http://covesa.global</div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/colored-with-black-text.svg" alt="VSS logo"></div>
+                <div class="flip-card-back">COVESA Vehicle Signal Specification</div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/Bosch-logotype.svg" alt="Bosch logo"></div>
+                <div class="flip-card-back"><img src="./logos/Bosch-logotype.svg" alt="Bosch logo"></div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/etas-logo-blue-new.svg" alt="ETAS logo"></div>
+                <div class="flip-card-back">Empowering Tomorrow's Automotive Software</div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/kuksa-logo-h.png" alt="KUKSA logo"></div>
+                <div class="flip-card-back"><img src="./logos/KUKSAQR.png" alt="KUKSA QR"></div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/SDV-Main-Colour-RGB copy.png" alt="Eclipse SDV logo"></div>
+                <div class="flip-card-back"><img src="./logos/EclipseSDVQR.png" alt="Eclipse SDV QR"></div>
+            </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class=flip-card-front><img src="./logos/EN Co-funded by the EU_POS.jpg" alt="EU funding logo">
+                </div>
+                <div class="flip-card-back"><img src="./logos/hal4sdvlogo.jpg" alt="Hal4SDV logo"> </div>
+            </div>
+        </div>
     </div>
 
     <div id="DebugContainer">
         <div id="RNDSPEED">RANDOM SPEED </div>
         <div id="RNDPOW">RANDOM POW </div>
     </div>
+
 
 </body>
 

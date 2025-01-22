@@ -1,17 +1,27 @@
 h1, h2 {
     font-family: sans-serif;
+    margin-top: 5px;
 }
 
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: lightgray;
 }
 
 #speedHolder {
     padding: 10px;
     text-align: center;
 }
+
+#thegraphic {
+    position: absolute;
+    top: 20px; /* Adjust the top value as needed */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 
 #powerHolder {
     padding: 10px;
@@ -40,21 +50,24 @@ body {
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
+    position: fixed;
+    top: 70px;
+    bottom: 200px;
 }
 .left-column {
-    background-color: yellow;
+    background-color: dimgray;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    color: blue;
+    color: white;
     padding: 10px;
     flex: 1; /* Takes up equal space */
 }
 .right-column {
-    background-color: purple;
+    background-color: white;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     padding: 10px;
-    color: white;
+    color: black;
     flex: 1; /* Takes up equal space */
 }
 
@@ -101,14 +114,27 @@ body {
 }
 
 
+#partnerheader {
+    position: absolute;
+    bottom: 120px;
+    margin-left: 25px;
+    background-color: lightgray;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
 .logo-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     gap: 20px; /* Space between grid items */
     width: 80%;
     max-width: 1200px;
-    margin: auto;
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
 }
 
 .logo-grid img {
@@ -118,12 +144,10 @@ body {
 }
 
 .logo-grid div {
-    background-color: white;
-    padding: 20px;
     display: flex;
-    justify-content: center;
+/*    justify-content: center;
     align-items: center;
-/*    border: 1px solid #ddd;
+    border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     */
 }
@@ -136,3 +160,66 @@ body {
     color: white;
     font-weight: bold;
 }
+
+
+/* Knob */
+#leftknob {
+    position: absolute;
+    top: 350px; /* Adjust the top value as needed */
+    left: 10%;
+}
+
+#rightknob {
+    position: absolute;
+    top: 450px; /* Adjust the top value as needed */
+    right: 10%;
+}
+
+
+
+/*FLIP FLIP*/
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    background-color: white;
+    padding: 7px;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    color: black;
+    font-size: x-small;
+    transform: rotateY(180deg);
+  }
