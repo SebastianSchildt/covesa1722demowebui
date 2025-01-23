@@ -31,7 +31,7 @@
 
     function addleftKnob() {
         // Create knob element, 300 x 300 px in size.
-        const lknob = pureknob.createKnob(150, 150);
+        window.lknob = pureknob.createKnob(150, 150);
 
         // Set properties.
         lknob.setProperty('angleStart', -0.75 * Math.PI);
@@ -39,7 +39,7 @@
         lknob.setProperty('colorFG', '#88ff88');
         lknob.setProperty('trackWidth', 0.4);
         lknob.setProperty('valMin', 0);
-        lknob.setProperty('valMax', 100);
+        lknob.setProperty('valMax', 360);
 
         // Set initial value.
         lknob.setValue(50);
@@ -70,7 +70,7 @@
 
     function addrightKnob() {
         // Create knob element, 300 x 300 px in size.
-        const rknob = pureknob.createKnob(150, 150);
+        window.rknob = pureknob.createKnob(150, 150);
 
         // Set properties.
         rknob.setProperty('angleStart', -0.75 * Math.PI);
@@ -78,7 +78,7 @@
         rknob.setProperty('colorFG', '#88ff88');
         rknob.setProperty('trackWidth', 0.4);
         rknob.setProperty('valMin', 0);
-        rknob.setProperty('valMax', 100);
+        rknob.setProperty('valMax', 360);
 
         // Set initial value.
         rknob.setValue(50);
@@ -118,8 +118,8 @@
         </div>
         <!-- <div style="display: table-cell; vertical-align: middle;text-align: right;"><img src="./logos/COVESA-logo.png"
                 style="padding-right: 25px;" height="60px" /></div> -->
-        <div style="display: table-cell; vertical-align: middle;text-align: right;"><img src="./logos/Bosch-logotype.svg"
-                style="padding-right: 25px;" height="60px" /></div>
+        <div style="display: table-cell; vertical-align: middle;text-align: right;"><img
+                src="./logos/Bosch-logotype.svg" style="padding-right: 25px;" height="60px" /></div>
     </div>
 
 
@@ -134,32 +134,47 @@
 
         <div class="left-column">
             <h2>Native CAN</h2>
-            <p style="padding-right:50%">
-                CAN data is received by the Vehicle Computer. It is then converted into COVESA Vehicle Signal
-                Specification (VSS) format by a KUKSA provider, enabling platform-independent SDV applications (such as
-                this web client you are seeing that uses Web technology to display the data received from the
-                electromechanical embedded layer).
-            </p>
-
+            <div style="padding-right:50%">
+                <p>
+                    CAN data is directly received by the Vehicle Computer.
+                </p>
+                <p>CAN messages are then converted into COVESA Vehicle Signal
+                    Specification (VSS) signals using the KUKSA framework. This enables platform-independent SDV
+                    applications.
+                <p>
+                    For example, the UI you are currently looking at, is written
+                    using web-technologies. It displays information from the electromechanical layer, accessed as VSS
+                    formatted SDV data from the KUKSA databroker component.
+                </p>
+            </div>
         </div>
 
 
         <div class="right-column">
 
             <h2 style="text-align: right;">CAN over IEEE-1722</h2>
-            <p style="padding-left:50%">CAN data is received by the Zone Controller. It is packaged into IEEE-1722
-                ACF-VSS
-                frames and forwarded via Ethernet.
-                A Open1722-based device driver converts the IEEE-1722 stream into a standard Linux CAN device. From the
-                virtual CAN device It is then converted into COVESA Vehicle Signal Specification (VSS) format by a KUKSA
-                provider, enabling platform-independent SDV applications (such as
-                this web client you are seeing that uses Web technology to display the data received from the
-                electromechanical embedded layer).
 
-
+            <div style="padding-left:50%;">
+                <p>
+                    CAN data is received by the Zone Controller.
+                </p>
+                <p style="color: blue;">
+                    The Open1722 software packs the CAN data into IEEE-1722 ACF-CAN frames and forwards them via
+                    Ethernet to the vehicle computer.
+                </p>
+                <p style="color: blue;">
+                    An Open1722-based device driver represents the IEEE-1722 ACF-CAN stream as a standard Linux CAN
+                    device.
+                </p>
+                <p>
+                    CAN messages are then converted into COVESA Vehicle Signal
+                    Specification (VSS) signals using the KUKSA framework. This enables platform-independent SDV
+                    applications.
+                    <span style="color: blue;">This is exactly the same stack that runs on native CAN.</span>
+                </p>
+            </div>
         </div>
     </div>
-
 
     <!--
     <div class="banner-container">
@@ -223,7 +238,8 @@
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class=flip-card-front><img src="./logos/COVESA-logo.png" alt="COVESA logo"></div>
-                <div class="flip-card-back" style="display: block;">Connected Vehicle Systems Alliance <a href="http://covesa.global" target="_blank">http://covesa.global</a></div>
+                <div class="flip-card-back" style="display: block;">Connected Vehicle Systems Alliance <a
+                        href="http://covesa.global" target="_blank">http://covesa.global</a></div>
             </div>
         </div>
         <div class="flip-card">
@@ -235,13 +251,16 @@
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class=flip-card-front><img src="./logos/Bosch-logotype.svg" alt="Bosch logo"></div>
-                <div class="flip-card-back" style="display: block;">Invented for life<br><a href="https://www.bosch.com/" target="_new">https://www.bosch.com/</a></div>
+                <div class="flip-card-back" style="display: block;">Invented for life<br><a
+                        href="https://www.bosch.com/" target="_new">https://www.bosch.com/</a></div>
             </div>
         </div>
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class=flip-card-front><img src="./logos/etas-logo-blue-new.svg" alt="ETAS logo"></div>
-                <div class="flip-card-back" style="display: block;">Empowering Tomorrow's Automotive Software <br> <a href="https://www.etas.com/" target="_new">https://www.etas.com/</a></div>
+                <div class="flip-card-back" style="display: block;">Empowering Tomorrow's Automotive Software <br>
+                    <a href="https://www.etas.com/" target="_new">https://www.etas.com/</a>
+                </div>
             </div>
         </div>
         <div class="flip-card">
@@ -252,7 +271,8 @@
         </div>
         <div class="flip-card">
             <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/SDV-Main-Colour-RGB copy.png" alt="Eclipse SDV logo"></div>
+                <div class=flip-card-front><img src="./logos/SDV-Main-Colour-RGB copy.png" alt="Eclipse SDV logo">
+                </div>
                 <div class="flip-card-back"><img src="./logos/EclipseSDVQR.png" alt="Eclipse SDV QR"></div>
             </div>
         </div>
