@@ -134,7 +134,8 @@ body {
     max-width: 1200px;
     position: absolute;
     bottom: 30px;
-    left: 10%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo-grid img {
@@ -180,6 +181,12 @@ body {
     top: 480px; /* Adjust the top value as needed */
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    background-color: purple;
+    box-shadow: 5px 5px 5px darkgray;
 }
 
 #slider {
@@ -192,14 +199,14 @@ body {
 
 /* from https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/ */
 input[type="range"]::-webkit-slider-runnable-track {
-    background: #000064;
+    background: white;
     height: 0.5rem;
     border-radius: 0.5rem;
   }
 
   /******** Firefox ********/
   input[type="range"]::-moz-range-track {
-    background: #000064;
+    background: white;
     height: 0.5rem;
     border-radius: 0.5rem;
   }
@@ -210,10 +217,10 @@ input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     margin-top: -12px; /* Centers thumb on the track */
-    background-color: purple;
+    background-color: lightgray;
     height: 2rem;
     width: 1rem; 
-    border-radius: 15;   
+    border-radius: 15rem;   
  }
   
   
@@ -223,9 +230,11 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
     border: none; /*Removes extra border that FF applies*/
     border-radius: 0; /*Removes default border-radius that FF applies*/
-    background-color: purple;
+    background-color: lightgray;
     height: 2rem;
     width: 1rem;
+    border-radius: 15rem;   
+
 }
 
 /*FLIP FLIP*/
