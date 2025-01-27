@@ -31,20 +31,9 @@ function setLeft(val) {
 }
 
 
-function testRandomSpeed() {
-    speed=Math.random()*220;
-    console.log("Set speed to "+speed);
-    setSpeed(speed);
-}
 
-function testRandomPow() {
-    pow=Math.random()*200-20;
-    console.log("Set pow to "+pow);
-    setPow(pow);
-}
 
 function initAll() {
-    //initGauges();
     initWebsocket();
 }
 
@@ -60,6 +49,11 @@ function keepAlive( ) {
 	setTimeout(keepAlive,2000); //we need to regularly send data thorugh ws to detect disconnects
 
 
+}
+
+function publishOffset(value) {
+    var msg = { action: "set", path: "Vehicle.OffsetCallibration", value: value, requestId: "5" }
+    wscon.send(JSON.stringify(msg));
 }
 
 function initWebsocket() {
@@ -114,6 +108,9 @@ function initWebsocket() {
             else if (jsonobj['requestId'] == 4) {
                 SUB_ID_GEAR=jsonobj['subscriptionId'];
                 statusMessage("Gear subcription succeeded.")
+            }
+            else if (jsonobj['requestId'] == 5) {
+                statusMessage("Offset set succeeded.")
             }
             else if (jsonobj['requestId'] == 99) {
                     return 
