@@ -53,7 +53,8 @@ function keepAlive( ) {
 }
 
 function publishOffset(value) {
-    var msg = { action: "set", path: "Vehicle.OffsetCallibration", value: value, requestId: "5" }
+    console.log("Set offset to "+value)
+    var msg = { action: "set", path: "Vehicle.OffsetCallibration", value: value+"", requestId: "5" }
     wscon.send(JSON.stringify(msg));
 }
 
@@ -120,7 +121,7 @@ function initWebsocket() {
         if ( jsonobj.hasOwnProperty("action") ) {
             if (jsonobj['action'] == "subscription" && jsonobj.hasOwnProperty("data") ) {
                 parseData(jsonobj);
-                statusMessage("Receiving data")
+                //statusMessage("Receiving data")
                 return;
             }
         }
