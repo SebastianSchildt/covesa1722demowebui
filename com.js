@@ -18,7 +18,7 @@ function setRight(val)  {
     //    return 
     //$('#acfVSSG').attr('data-value', pow)
     window.rknob.setValue(val);
-    console.log("New Right is "+val);
+    //console.log("New Right is "+val);
 }
 
 
@@ -27,7 +27,7 @@ function setRight(val)  {
 function setLeft(val) {
     //$('#acfcanG').attr('data-value', speed);
     window.lknob.setValue(val);
-    console.log("New Left is "+val);
+    //console.log("New Left is "+val);
 }
 
 
@@ -38,7 +38,8 @@ function initAll() {
 }
 
 function statusMessage(msg) {
-    $("#status").html(msg);
+    console.log(msg);
+    $("#messages").html(msg);
 }
 
 function keepAlive( ) {
@@ -60,10 +61,12 @@ function initWebsocket() {
     host=window.location.hostname
     wscon = new WebSocket("ws://"+host+":8090");
 
-    statusMessage("Opening  websocket...")
+    statusMessage("Waiting for connection...")
     wscon.onopen = function () {
         console.log("Open. Send Auhtorize"); 
         statusMessage("Websocket open. Sending authorization & subsription request...")
+        $("#messages").hide();
+
         //authMsg = { action: "authorize", tokens: TOKEN, requestId: "1" }
         //wscon.send(JSON.stringify(authMsg));
 
@@ -82,15 +85,15 @@ function initWebsocket() {
     
 
     wscon.onerror = function () {
-        //console.log("Websocket error, try reconnection");
-        statusMessage("Websocket connection error. Reconnecting...")
+        statusMessage(" Connection error. Reconnecting...")
+        $("#messages").show();
         //onclose will be called anyway
         //setTimeout(initWebsocket,500);
     };
     
     wscon.onclose = function () {
-        console.log("Websocket was closed, try reconnection");
-        statusMessage("Websocket unexpectedly closed. Reconnecting...")
+        statusMessage("Connction Error. Reconnecting...")
+        $("#messages").show();
         setTimeout(initWebsocket,500);
     };
 
