@@ -21,7 +21,27 @@
         initAll();
         addleftKnob();
         addrightKnob();
+        addAppToggles()
     });
+
+    function addAppToggles() {
+        document.getElementById('mySVG').addEventListener('load', function () { 
+            //element= this.querySelector('g[data-cell-id="callibrationApp"]');
+            svg = document.querySelector("object");
+            svgdoc=svg.getSVGDocument()
+            element = svgdoc.querySelector('g[data-cell-id="callibrationApp"]');
+            if (element) {
+                element.addEventListener('click', () => {
+                    var slider = document.getElementById('slider');
+                    slider.value = 0;
+                    publishOffset(slider.value);
+            });
+            } 
+            else {
+                console.error('Element with data-cell-id="callibrationApp" not found.');
+            }
+        });
+    }
 
     function addleftKnob() {
         // Create knob element, 300 x 300 px in size.
@@ -130,7 +150,8 @@
 
     <div class="container">
         <div id="thegraphic" style="text-align: center;">
-            <img src="./raw_can_knob_block.drawio.svg" />
+            <object id="mySVG" type="image/svg+xml" data="./raw_can_knob_block.drawio.svg" style="color-scheme: light;"></object>
+            <!--<img id="mySVG" src="./raw_can_knob_block.drawio.svg" />-->
         </div>
         <div id="leftknob" class="knob"></div>
         <div id="rightknob" class="knob"></div>

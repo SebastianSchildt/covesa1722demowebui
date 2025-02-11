@@ -75,10 +75,7 @@ function initWebsocket() {
 
         subMsg = { action: "subscribe", path: "Vehicle.Cabin.RightKnob", "requestId": "3" }
         wscon.send(JSON.stringify(subMsg));
-
-        //subMsg = { action: "subscribe", path: "Vehicle.Powertrain.Transmission.Gear", "requestId": "4" }
-        //wscon.send(JSON.stringify(subMsg));
-        
+ 
         setTimeout(keepAlive,2000); //we need to regularly send data thorugh ws to detect disconnects 
 
     };
