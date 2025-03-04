@@ -2,7 +2,7 @@ var speedGauge;
 var powerGauge;
 
 
-var SUB_ID_LEFT=0;
+var SUB_ID_STEERING_CURRENT=0;
 var SUB_ID_RIGHT=0;
 var SUB_ID_GEAR=0;
 
@@ -24,9 +24,15 @@ function setRight(val)  {
 
 
 
-function setLeft(val) {
+function setSteeringCurrent(val) {
     //$('#acfcanG').attr('data-value', speed);
-    window.lknob.setValue(val);
+    window.steeringcurrent.setValue(val);
+    if (val >0) {
+        window.steeringcurrent.setProperty('colorFG', '#0000ff');
+    }
+    else {
+        window.steeringcurrent.setProperty('colorFG', '#ff0000');
+    }
     //console.log("New Left is "+val);
 }
 
@@ -52,8 +58,8 @@ function keepAlive( ) {
 
 }
 
-function publishOffset(value) {
-    var msg = { action: "set", path: "Vehicle.OffsetCallibration", value: value, requestId: "5" }
+function publishTargetAngle(value) {
+    var msg = { action: "set", path: "Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle", value: value, requestId: "5" }
     wscon.send(JSON.stringify(msg));
 }
 
@@ -70,7 +76,7 @@ function initWebsocket() {
         //authMsg = { action: "authorize", tokens: TOKEN, requestId: "1" }
         //wscon.send(JSON.stringify(authMsg));
 
-        subMsg = { action: "subscribe", path: "Vehicle.Cabin.LeftKnob", "requestId": "2" }
+        subMsg = { action: "subscribe", path: "Vehicle.Chassis.SteeringWheel.Angle", "requestId": "2" }
         wscon.send(JSON.stringify(subMsg));
 
         subMsg = { action: "subscribe", path: "Vehicle.Cabin.RightKnob", "requestId": "3" }
@@ -98,8 +104,8 @@ function initWebsocket() {
         jsonobj = JSON.parse(e.data);
         if ( jsonobj.hasOwnProperty("requestId") ) {
             if (jsonobj['requestId'] == 2) {
-                SUB_ID_LEFT=jsonobj['subscriptionId'];
-                statusMessage("LeftKnob subcription succeeded.")
+                SUB_ID_STEERING_CURRENT=jsonobj['subscriptionId'];
+                statusMessage("Steeringwheel current subcription succeeded.")
             }
             else if (jsonobj['requestId'] == 3) {
                 SUB_ID_RIGHT=jsonobj['subscriptionId'];
@@ -110,7 +116,7 @@ function initWebsocket() {
                 statusMessage("Gear subcription succeeded.")
             }
             else if (jsonobj['requestId'] == 5) {
-                statusMessage("Offset set succeeded.")
+                statusMessage("TargetAngle set succeeded.")
             }
             else if (jsonobj['requestId'] == 99) {
                     return 
@@ -131,8 +137,8 @@ function initWebsocket() {
 
 function parseData(js) {
     if ( js.hasOwnProperty("subscriptionId") ) {
-        if (js['subscriptionId'] == SUB_ID_LEFT) {
-            setLeft(js['data']['dp']['value']);
+        if (js['subscriptionId'] == SUB_ID_STEERING_CURRENT) {
+            setSteeringCurrent(js['data']['dp']['value']);
             return;
         }
         else if (js['subscriptionId'] == SUB_ID_RIGHT) {

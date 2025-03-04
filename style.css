@@ -60,13 +60,11 @@ body {
 }
 
 .container {
-    display: flex;
+    margin: 0 auto;
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
-    position: fixed;
-    top: 70px;
-    bottom: 200px;
+
 }
 .left-column {
     background-color: dimgray;
@@ -178,10 +176,9 @@ body {
 
 
 /* Knob */
-#leftknob {
-    position: absolute;
-    top: 350px; /* Adjust the top value as needed */
-    left: 10%;
+#steering_current {
+ width:250px;
+ margin: 0 auto;
 }
 
 #rightknob {
@@ -191,14 +188,11 @@ body {
 }
 
 #controller {
-    position: absolute;
-    top: 480px; /* Adjust the top value as needed */
-    left: 50%;
-    transform: translateX(-50%);
     border-radius: 20px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 20px;
+    padding-top: 10px;
     background-color: purple;
     box-shadow: 5px 5px 5px darkgray;
 }
@@ -208,7 +202,7 @@ body {
         appearance: none;
         background: transparent;
         cursor: pointer;
-        width: 250px;
+        width: 100%;
 }
 
 /* from https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/ */
