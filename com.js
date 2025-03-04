@@ -25,7 +25,8 @@ function setRight(val)  {
 
 
 function setSteeringCurrent(val) {
-    //$('#acfcanG').attr('data-value', speed);
+    //Change the value, so "+" is right and "-" is left
+    val=-1*val;
     window.steeringcurrent.setValue(val);
     if (val >0) {
         window.steeringcurrent.setProperty('colorFG', '#0000ff');
