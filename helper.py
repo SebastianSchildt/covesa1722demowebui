@@ -12,6 +12,6 @@ with VSSClient('127.0.0.1', 55555) as client:
         'Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle',
     ]):
         if updates['Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle'] is not None:
-            print("Sync")
+            print(f"Sync set to {updates['Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle'.value]}")
             client.set_current_values({
                 'Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle': updates['Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle']})
