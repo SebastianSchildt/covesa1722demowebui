@@ -1,6 +1,10 @@
 h1, h2 {
     font-family: sans-serif;
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+h1 {
+    font-weight: normal;
 }
 
 
@@ -10,6 +14,9 @@ body {
     background-color: lightgray;
 }
 
+#header {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 #speedHolder {
     padding: 10px;
     text-align: center;
@@ -61,6 +68,7 @@ body {
 
 .container {
     margin: 0 auto;
+    padding-top: 20px;
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
@@ -127,8 +135,6 @@ body {
 
 
 #partnerheader {
-    position: absolute;
-    bottom: 120px;
     margin-left: 25px;
     background-color: lightgray;
     padding: 5px;
@@ -139,19 +145,16 @@ body {
 
 .logo-grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 20px; /* Space between grid items */
-    width: 80%;
-    max-width: 1200px;
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px; /* Space between grid items */
+    margin: 0 auto;
+    margin-bottom: 20px;
+    place-items: center;
 }
 
 .logo-grid img {
-    width: 100%;
+    width: 90%;
     height: auto;
     object-fit: contain;
 }
@@ -249,8 +252,8 @@ input[type="range"]::-moz-range-thumb {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
   
@@ -273,11 +276,11 @@ input[type="range"]::-moz-range-thumb {
   .flip-card-front, .flip-card-back {
     position: absolute;
     background-color: white;
-    padding: 7px;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    place-content: center;
   }
   
   /* Style the front side (fallback if image is missing) */
