@@ -17,7 +17,7 @@ function setRight(val)  {
     //if (pow == null) 
     //    return 
     //$('#acfVSSG').attr('data-value', pow)
-    window.rknob.setValue(val);
+    window.rknob.setValue(-1*val);
     //console.log("New Right is "+val);
 }
 
@@ -26,7 +26,7 @@ function setRight(val)  {
 
 function setLeft(val) {
     //$('#acfcanG').attr('data-value', speed);
-    window.lknob.setValue(val);
+    window.lknob.setValue(-1*val);
     //console.log("New Left is "+val);
 }
 
