@@ -54,7 +54,9 @@ function keepAlive( ) {
 
 function publishOffset(value) {
     console.log("Set offset to "+value)
-    var msg = { action: "set", path: "Vehicle.OffsetCallibration", value: value+"", requestId: "5" }
+    //var msg = { action: "set", path: "Vehicle.OffsetCallibration", value: value+"", requestId: "5" }
+    var msg = { action: "set", path: "Vehicle.ADAS.LaneAssist.TargetSteeringWheelAngle", value: value+"", requestId: "5" }
+    
     wscon.send(JSON.stringify(msg));
 }
 
