@@ -25,18 +25,18 @@
     });
 
     function addAppToggles() {
-        document.getElementById('mySVG').addEventListener('load', function () { 
+        document.getElementById('mySVG').addEventListener('load', function () {
             //element= this.querySelector('g[data-cell-id="callibrationApp"]');
             svg = document.querySelector("object");
-            svgdoc=svg.getSVGDocument()
+            svgdoc = svg.getSVGDocument()
             element = svgdoc.querySelector('g[data-cell-id="callibrationApp"]');
             if (element) {
                 element.addEventListener('click', () => {
                     var slider = document.getElementById('slider');
                     slider.value = 0;
                     publishOffset(slider.value);
-            });
-            } 
+                });
+            }
             else {
                 console.error('Element with data-cell-id="callibrationApp" not found.');
             }
@@ -54,7 +54,7 @@
         lknob.setProperty('trackWidth', 0.4);
         lknob.setProperty('valMin', -1000);
         lknob.setProperty('valMax', 1000);
-        lknob.setProperty('readOnly',true);
+        lknob.setProperty('readOnly', true);
 
         // Set initial value.
         lknob.setValue(50);
@@ -94,8 +94,8 @@
         rknob.setProperty('trackWidth', 0.4);
         rknob.setProperty('valMin', -1000);
         rknob.setProperty('valMax', 1000);
-        rknob.setProperty('readOnly',true);
-        
+        rknob.setProperty('readOnly', true);
+
 
         // Set initial value.
         rknob.setValue(50);
@@ -126,7 +126,7 @@
 
     function handleSliderChange() {
         var slider = document.getElementById('slider');
-        publishOffset(-1*slider.value);
+        publishOffset(-1 * slider.value);
     }
 
 </script>
@@ -137,7 +137,7 @@
     <div style="display: table;width:100%;">
         <!-- <div style="display: table-cell; vertical-align: middle;"><img src="./kuksalogo.png" height="60px" /></div> -->
         <div style="display: table-cell; vertical-align: middle;">
-            <h1> &nbsp;&nbsp;IEEE-1722 ACF-CAN</h1>
+            <h1> &nbsp;&nbsp;COVESA Open1722 on digital.auto Starter Kit</h1>
         </div>
         <!-- <div style="display: table-cell; vertical-align: middle;text-align: right;"><img src="./logos/COVESA-logo.png"
                 style="padding-right: 25px;" height="60px" /></div> -->
@@ -150,14 +150,16 @@
 
     <div class="container">
         <div id="thegraphic" style="text-align: center;">
-            <object id="mySVG" type="image/svg+xml" data="./raw_can_knob_block.drawio.svg" style="color-scheme: light;"></object>
+            <object id="mySVG" type="image/svg+xml" data="./raw_can_knob_block.drawio.svg"
+                style="color-scheme: light;"></object>
             <!--<img id="mySVG" src="./raw_can_knob_block.drawio.svg" />-->
         </div>
         <div id="leftknob" class="knob"></div>
         <div id="rightknob" class="knob"></div>
         <div id="controller" class="knob">
             <h3 style="color: white; text-align: center;">Offset callibration</h3>
-            <input type="range" id="slider" name="callibrate" min="-180" max="180" value="0" step="5" oninput="handleSliderChange()" />
+            <input type="range" id="slider" name="callibrate" min="-180" max="180" value="0" step="5"
+                oninput="handleSliderChange()" />
         </div>
 
 
@@ -205,64 +207,71 @@
         </div>
     </div>
 
-  
+
     <div id="partnerheader">
         <h2>Partners & Technologies</h2>
     </div>
 
-    <div class="logo-grid">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/open1722logo.png" alt="Open1722 logo"></div>
-                <div class="flip-card-back"> <img src="./logos/Open1722QR.png" alt="Open1722 QR"></div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/COVESA-logo.png" alt="COVESA logo"></div>
-                <div class="flip-card-back" style="display: block;">Connected Vehicle Systems Alliance <a
-                        href="http://covesa.global" target="_blank">http://covesa.global</a></div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/colored-with-black-text.svg" alt="VSS logo"></div>
-                <div class="flip-card-back"><img src="./logos/VSSQR.png" alt="VSS QR"></div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/Bosch-logotype.svg" alt="Bosch logo"></div>
-                <div class="flip-card-back" style="display: block;">Invented for life<br><a
-                        href="https://www.bosch.com/" target="_new">https://www.bosch.com/</a></div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/etas-logo-blue-new.svg" alt="ETAS logo"></div>
-                <div class="flip-card-back" style="display: block;">Empowering Tomorrow's Automotive Software <br>
-                    <a href="https://www.etas.com/" target="_new">https://www.etas.com/</a>
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+            <div class="logo-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/open1722logo.png" alt="Open1722 logo"></div>
+                        <div class="flip-card-back"> <img src="./logos/Open1722QR.png" alt="Open1722 QR"></div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/kuksa-logo-h.png" alt="KUKSA logo"></div>
-                <div class="flip-card-back"><img src="./logos/KUKSAQR.png" alt="KUKSA QR"></div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-front><img src="./logos/SDV-Main-Colour-RGB copy.png" alt="Eclipse SDV logo">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/digital_auto_textlower.png"
+                                alt="digital.auto logo"></div>
+                        <div class="flip-card-back"> <img src="./logos/digital_autoQR.png" alt="digital.auto QR"></div>
+                    </div>
                 </div>
-                <div class="flip-card-back"><img src="./logos/EclipseSDVQR.png" alt="Eclipse SDV QR"></div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class=flip-card-back><img src="./logos/EN Co-funded by the EU_POS.jpg" alt="EU funding logo">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/colored-with-black-text.svg" alt="VSS logo"></div>
+                        <div class="flip-card-back"><img src="./logos/VSSQR.png" alt="VSS QR"></div>
+                    </div>
                 </div>
-                <div class="flip-card-front"><img src="./logos/hal4sdvlogo.jpg" alt="Hal4SDV logo"> </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/Bosch-logotype.svg" alt="Bosch logo"></div>
+                        <div class="flip-card-back" style="display: block;">Invented for life<br><a
+                                href="https://www.bosch.com/" target="_new">https://www.bosch.com/</a></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/etas-logo-blue-new.svg" alt="ETAS logo"></div>
+                        <div class="flip-card-back" style="display: block;">Empowering Tomorrow's Automotive Software
+                            <br>
+                            <a href="https://www.etas.com/" target="_new">https://www.etas.com/</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/kuksa-logo-h.png" alt="KUKSA logo"></div>
+                        <div class="flip-card-back"><img src="./logos/KUKSAQR.png" alt="KUKSA QR"></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class=flip-card-front><img src="./logos/SDV-Main-Colour-RGB copy.png"
+                                alt="Eclipse SDV logo">
+                        </div>
+                        <div class="flip-card-back"><img src="./logos/EclipseSDVQR.png" alt="Eclipse SDV QR"></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="./logos/hal4sdvlogo.jpg" alt="Hal4SDV logo"> </div>
+
+                        <div class=flip-card-back><img src="./logos/EN Co-funded by the EU_POS.jpg"  alt="EU funding logo">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
